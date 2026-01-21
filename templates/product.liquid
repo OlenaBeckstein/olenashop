@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ product.title }}</title>
+  <link rel="stylesheet" href="{{ 'product.css' | asset_url }}">
+</head>
+<body>
+
+  <div class="product-container">
+    <div class="product-images">
+      <img id="main-image" src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+      <div class="thumbnail-images">
+        {% for image in product.images %}
+          <img class="thumbnail" src="{{ image | img_url: 'small' }}" alt="{{ image.alt | escape }}">
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.description }}</p>
+      <span>{{ product.price | money }}</span>
+
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit">Add to Cart</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ 'product.js' | asset_url }}" defer></script>
+</body>
+</html>

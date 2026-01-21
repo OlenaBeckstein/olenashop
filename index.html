@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample Product</title>
+  <link rel="stylesheet" href="assets/product.css">
+</head>
+<body>
+
+  <div class="product-container">
+    <div class="product-images">
+      <img id="main-image" src="https://picsum.photos/id/237/500/500" alt="Sample Product Main Image">
+      <div class="thumbnail-images">
+          <img class="thumbnail" src="https://picsum.photos/id/237/60/60" alt="Thumbnail 1">
+          <img class="thumbnail" src="https://picsum.photos/id/238/60/60" alt="Thumbnail 2">
+          <img class="thumbnail" src="https://picsum.photos/id/239/60/60" alt="Thumbnail 3">
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h1>Sample Product Title</h1>
+      <p>This is a sample product description. It provides details about the amazing features of this product. Buy it now!</p>
+      <span>$19.99</span>
+
+      <!-- Add to Cart form - disabled for static preview -->
+      <!-- <form action="/cart/add" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="[product_variant_id]">
+        <button type="submit">Add to Cart</button>
+      </form> -->
+      <button>Add to Cart (functionality disabled in preview)</button>
+    </div>
+  </div>
+
+  <script src="assets/product.js" defer></script>
+</body>
+</html>
