@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', function() {
-      mainImage.src = this.src.replace('_small', '_large');
+      // Set main image src
+      mainImage.src = this.src;
+
+      // Update active thumbnail
+      thumbnails.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
     });
   });
 });
