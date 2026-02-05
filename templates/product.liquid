@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.title }}</title>
+    <link rel="stylesheet" href="{{ 'product.css' | asset_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="top-bar">
+        HEUTE VERSANDKOSTENFREI
+    </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{{ 'logo-neoric_10c0843e-64e6-440c-93d1-9e96932fad90_360x.png' | asset_url }}" alt="NEORIC">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Neon Armband™</a></li>
+                    <li><a href="#">Größentabelle</a></li>
+                    <li><a href="#">Versand</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-container">
+            <div class="product-images">
+                <div class="thumbnails">
+                    {% for image in product.images %}
+                    <img class="thumbnail {% if forloop.first %}active{% endif %}" src="{{ image | img_url: '80x' }}" alt="{{ image.alt | escape }}">
+                    {% endfor %}
+                </div>
+                <div class="main-image-container">
+                    <img id="main-image" src="{{ product.featured_image | img_url: '1298x' }}" alt="{{ product.featured_image.alt | escape }}">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1>{{ product.title }}</h1>
+                <p class="subtitle">Apple Watch Armband</p>
+                <div class="price">
+                    {% if product.compare_at_price > product.price %}
+                        <span class="new-price">{{ product.price | money }}</span>
+                        <span class="old-price">{{ product.compare_at_price | money }}</span>
+                    {% else %}
+                        <span class="new-price">{{ product.price | money }}</span>
+                    {% endif %}
+                    <span class="tax">inkl. MwSt.</span>
+                </div>
+                <div class="availability">
+                    <span class="dot"></span>
+                    <span>Auf Lager, in 2-3 Tagen bei dir</span>
+                </div>
+                <form action="/cart/add" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                    <button type="submit" class="add-to-cart">In den Einkaufswagen</button>
+                </form>
+            </div>
+        </div>
+
+        <section class="quality-section">
+            <div class="quality-item">
+                <img src="{{ 'quality.svg' | asset_url }}" alt="100% Qualität">
+                <h3>100% Qualität</h3>
+                <p>Dank weichem Silikon</p>
+            </div>
+            <div class="quality-item">
+                <img src="{{ 'quality.svg' | asset_url }}" alt="100% Qualität">
+                <h3>100% Qualität</h3>
+                <p>Dank weichem Silikon</p>
+            </div>
+            <div class="quality-item">
+                <img src="{{ 'quality.svg' | asset_url }}" alt="100% Qualität">
+                <h3>100% Qualität</h3>
+                <p>Dank weichem Silikon</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ 'product.js' | asset_url }}"></script>
+</body>
+</html>
